@@ -11,13 +11,15 @@ provider "snowflake" {
   role  = "SYSADMIN"
 }
 
+#DATABASE CREATIION
 resource "snowflake_database" "db" {
   name     = "TF_DEMO"
 }
 
+#WAREHOUSE
 resource "snowflake_warehouse" "warehouse" {
-  name           = "TF_DEMO"
-  warehouse_size = "small"
+  name           = var.warehouse_name
+  warehouse_size = var.warehouse_size
 
   auto_suspend = 60
 }
