@@ -11,15 +11,17 @@ provider "snowflake" {
   role  = "SYSADMIN"
 }
 
-#DATABASE CREATIION
+#DATABASE CREATION
 resource "snowflake_database" "db" {
   name     = "TF_DEMO"
 }
 
-#WAREHOUSE
+#WAREHOUSE CREATION
 resource "snowflake_warehouse" "warehouse" {
-  name           = var.warehouse_name
-  warehouse_size = var.warehouse_size
-
+  for_each = var.warehouse
+  name           = each.value["name"]
+  warehouse_size = each.value["warehouse_size"]
+  min_cluster_count = 1
+  max_cluster_count = 10
   auto_suspend = 60
 }

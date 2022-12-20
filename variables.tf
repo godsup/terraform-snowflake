@@ -1,9 +1,16 @@
-variable "warehouse_name" {
-  type = string
-  description = "The name of the warehouse"
-}
 
-variable "warehouse_size" {
-  type = string
-  description = "the size of warehouse"
+
+
+variable "warehouse" {
+    description = "Insert name and warehouse size (xsmall, small, medium, large, xlarge)"
+  type = map(object({
+    name = string
+    warehouse_size = string
+  }))
+  default =  {
+    "key" = {
+      name = "warehousedemo"
+      warehouse_size = "xsmall"
+    }
+  }
 }
