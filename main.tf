@@ -18,9 +18,9 @@ resource "snowflake_database" "db" {
 
 #WAREHOUSE CREATION
 resource "snowflake_warehouse" "warehouse" {
-  for_each = var.warehouse
-  name           = each.value["name"]
-  warehouse_size = each.value["warehouse_size"]
+  for_each = var.warehouses
+  name           = each.value
+  warehouse_size = "xsmall"
   min_cluster_count = 1
   max_cluster_count = 10
   auto_suspend = 60
