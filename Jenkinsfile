@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                terraform init
+                terraform apply -auto-approve
             }
         }
         stage('Test') {
