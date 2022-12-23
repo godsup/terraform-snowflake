@@ -6,12 +6,6 @@ pipeline {
         SNOWFLAKE_ACCOUNT="AJ17482"
         SNOWFLAKE_REGION="eu-central-1"
     }
-    environment {
-        SNOWFLAKE_USER="KARLIS"
-        SNOWFLAKE_PASSWORD = credentials("SECRET_TEXT")
-        SNOWFLAKE_ACCOUNT="KM84581"
-        SNOWFLAKE_REGION="eu-central-1"
-    }
     stages {
         stage('Checkout') {
             steps {
