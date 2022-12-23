@@ -1,22 +1,30 @@
 pipeline {
     agent any
-
+    environment {
+        SNOWFLAKE_USER="KARLIS"
+        SNOWFLAKE_PASSWORD = credentials("SECRET_TEXT")
+        SNOWFLAKE_ACCOUNT="KM84581"
+        SNOWFLAKE_REGION="eu-central-1"
+    }
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh label: '', script: 'terraform init'
-                sh label: '', script: 'terraform apply --auto-approve'
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/godsup/terraform-snowflake.git']]])            
+
+          }
+        }
+
+        
+        stage ("terraform init") {
+            steps {
+                sh ('terraform init -no-color') 
             }
         }
-        stage('Test') {
+        
+        stage ("terraform Action") {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+                sh ('terraform destroy --auto-approve -no-color') 
+           }
         }
     }
 }
