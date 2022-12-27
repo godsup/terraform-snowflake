@@ -21,7 +21,7 @@ pipeline {
             }
         }
         
-        stage ("terraform Action") {
+        stage ("terraform Apply") {
             steps {
                 sh ('terraform apply --auto-approve -no-color') 
            }
