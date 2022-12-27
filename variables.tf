@@ -1,6 +1,6 @@
 
 
-#First test for map 
+#This is another way how to use type = map variables
 # variable "warehouse" {
 #     description = "Insert name and warehouse size (xsmall, small, medium, large, xlarge)"
 #   type = map(object({
@@ -16,7 +16,7 @@
 # }
 
 
-
+#This is how you use for each loops in terraform
 variable "warehouses" {
   description = "List of warehouse names to add to snowflake"
   type = map

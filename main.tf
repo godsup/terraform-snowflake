@@ -11,6 +11,7 @@ provider "snowflake" {
   role  = "SYSADMIN"
 }
 
+
 #DATABASE CREATION
 resource "snowflake_database" "db" {
   name     = "TF_DEMO"

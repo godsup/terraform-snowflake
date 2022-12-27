@@ -1,0 +1,29 @@
+#Guides:
+
+#How to export variables to your machine:
+
+export SNOWFLAKE_USER="tf-snow"
+export SNOWFLAKE_PRIVATE_KEY_PATH="~/.ssh/snowflake_tf_snow_key.p8"
+export SNOWFLAKE_ACCOUNT="KM84581"
+export SNOWFLAKE_REGION="eu-central-1"
+
+
+#How to create a user in Snowflake using worksheets:
+#This example uses a public key you can also assign a password.
+
+CREATE USER "tf-snow" RSA_PUBLIC_KEY='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArvcEF284KQvX89r7aoab
+P3z+hVaoq2d7YQyfmyGPgAz94xo7ugVZscjG90sUZBBWNPx+dx+9InHY3FsmQ3Vq
+eQXPcBfIgoABAh94SpveYcoRYpH8/13JWSi37cARl5FM/h+QvKEVgtT60tC93rOa
+2+dXVKho3UV+zmb03blsntZoTBqI4fpqv3jfV5umYk/VPXnSKy6qcPJxNEhJQnrp
+JKEzTLLZlDtmn4HkxggjxkAu66rj3FXs4ne/2Wp3xG6Oj+pXrufcwQdeeeDjybrH
+LleRsP2Fxdd8O7/Ifk3WBNCDBDJG5JQ3mJ75UVw6CCGpBwY74sWd2xuLaG7mTzSL
+AQIDAQAB' DEFAULT_ROLE=PUBLIC MUST_CHANGE_PASSWORD=FALSE;
+
+#How to grant role to a user:
+
+GRANT ROLE SYSADMIN TO USER "tf-snow";
+GRANT ROLE SECURITYADMIN TO USER "tf-snow";
+
+#How to show current account locator and current region:
+
+SELECT current_account() as YOUR_ACCOUNT_LOCATOR, current_region() as YOUR_SNOWFLAKE_REGION_ID;
